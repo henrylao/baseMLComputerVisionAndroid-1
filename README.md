@@ -6,7 +6,7 @@ This app in the current state simply loads up a google map with a set of buttons
 
 Additionally there are some supporting Data classes that could be used to store records on the backend using Google Firestore --at this point you will not have access to store the data on MY backend so you should turn this feature off (comment out this code) in the ClassifierActivity and DetecorActivity classes but, I wanted to share with you the logic/code to make this happen.  If you wish and you understand or are willing to learn Google Firestore on your own you have the option of modifying as necessary to point to your Firestore so the records can be stored.   The data files are located in the [data package](https://github.com/grewe/baseMLComputerVisionAndroid/tree/master/app/src/main/java/edu/ilab/covid_id/data).
 
-Note the code that uses Google Auntehtication for authenticating a user based on the Login button being hit on the main activity interface can be found in the (auth package)[https://github.com/grewe/baseMLComputerVisionAndroid/tree/master/app/src/main/java/edu/ilab/covid_id/auth]
+Note the code that uses Google Auntehtication for authenticating a user based on the Login button being hit on the main activity interface can be found in the [auth package](https://github.com/grewe/baseMLComputerVisionAndroid/tree/master/app/src/main/java/edu/ilab/covid_id/auth)
 
 developed by [![image](https://user-images.githubusercontent.com/11790686/82628915-0db28800-9ba3-11ea-817d-a0dcfe447ad7.png)](http://borg.csueastbay.edu/~grewe/ilab/index.html)         contact: [Professor Lynne Grewe](mailto:lynne.grewe@csueastbay.edu)
 
