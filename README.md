@@ -1,4 +1,4 @@
-
+<b><h2>baseMLComputerVisionAndroid repository</h2></b>
 
 baseMLComputerVisionAndroid  repository is a copy of an early version of [Covid ID repository](https://github.com/grewe/covid_id/wiki) is a project out of [iLab](http://borg.csueastbay.edu/~grewe/ilab/index.html) associated with [Computer Science at California State University East Bay](https://www.csueastbay.edu/cs/) to explore how Computer Vision and Machine Learning can be used to assist the general public with situation awareness as it relates to Covid-19.  This code repostiory was created as a BASE Android application using Computer Vision and Tensorflow Machine Learning.
 
