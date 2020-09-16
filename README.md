@@ -10,6 +10,8 @@ Note the code that uses Google Auntehtication for authenticating a user based on
 
 developed by [![image](https://user-images.githubusercontent.com/11790686/82628915-0db28800-9ba3-11ea-817d-a0dcfe447ad7.png)](http://borg.csueastbay.edu/~grewe/ilab/index.html)         contact: [Professor Lynne Grewe](mailto:lynne.grewe@csueastbay.edu)
 
+#### Important: you will need to supply your own Google Maps API key for the starting map activity to display a map properly
+
 
 
 
