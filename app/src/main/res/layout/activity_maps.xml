@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/flowersClassificationButton"
-        android:layout_marginTop="-48dp"
+        android:layout_marginTop="-19dp"
         tools:context=".MapsActivity" />
 
     <Button
@@ -40,16 +40,17 @@
         android:text="Login" />
 
     <Button
-        android:id="@+id/IRButton"
+        android:id="@+id/IPButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
         android:layout_below="@+id/flowersClassificationButton"
-        android:layout_marginBottom="0dp"
-        android:layout_marginEnd="323dp"
-        android:layout_marginTop="635dp"
-        android:text="IR" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="308dp"
+        android:layout_marginTop="559dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="52dp"
+        android:text="IP" />
 
 
 </RelativeLayout>

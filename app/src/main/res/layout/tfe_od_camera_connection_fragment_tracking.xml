@@ -17,12 +17,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <edu.ilab.covid_id.localize.customview.AutoFitTextureView
+    <edu.ilab.cs663.localize.customview.AutoFitTextureView
         android:id="@+id/texture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <edu.ilab.covid_id.localize.customview.OverlayView
+    <edu.ilab.cs663.localize.customview.OverlayView
         android:id="@+id/tracking_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

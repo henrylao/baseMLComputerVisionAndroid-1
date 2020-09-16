@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.ilab.covid_id">
+    package="edu.ilab.cs663">
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -66,10 +66,10 @@
 
         <activity
             android:name=".localize.DetectorActivity"
-            android:parentActivityName="edu.ilab.covid_id.MapsActivity"
+            android:parentActivityName="edu.ilab.cs663.MapsActivity"
             android:label="@string/covid_id_localize">
             <intent-filter>
-                <action android:name="edu.ilab.covid_id.localize.DetectorActivity" />
+                <action android:name="edu.ilab.cs663.localize.DetectorActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -77,10 +77,10 @@
 
         <activity
             android:name=".classification.ClassifierActivity"
-            android:parentActivityName="edu.ilab.covid_id.MapsActivity"
+            android:parentActivityName="edu.ilab.cs663.MapsActivity"
             android:label="@string/covid_id_flowers">
             <intent-filter>
-                <action android:name="edu.ilab.covid_id.classification.ClassifierActivity" />
+                <action android:name="edu.ilab.cs663.classification.ClassifierActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
