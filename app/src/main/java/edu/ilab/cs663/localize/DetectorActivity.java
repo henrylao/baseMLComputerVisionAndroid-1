@@ -294,16 +294,11 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
                           Timestamp.now(), imageFileURL, result.getTitle(),boundingBox, angles, 0.0f,
                           MapsActivity.userEmailFirebase, MapsActivity.userIdFirebase);
 
+               //Comment as do not want you to get error as you are not authorized to use my backend but leaving code
+                  // so you understand how it is done
+               //   FirebaseStorageUtil.storeImageAndCovidRecord(cropCopyBitmap, myRecord, MapsActivity.currentLocation);
 
-                  FirebaseStorageUtil.storeImageAndCovidRecord(cropCopyBitmap, myRecord, MapsActivity.currentLocation);
 
-/*
-                  // ask helper to push record to db
-                  MapsActivity.myFirestoreHelper.addRecord(myRecord);
-
-                  //update the last time record stored
-                  MapsActivity.covidRecordLastStoreTimestamp =  System.currentTimeMillis();
-                  */
 
                 }
                 //###############################################
