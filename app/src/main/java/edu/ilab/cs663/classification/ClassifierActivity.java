@@ -198,8 +198,10 @@ public class ClassifierActivity extends edu.ilab.cs663.classification.CameraActi
                                                         new GeoPoint(MapsActivity.currentLocation.getLatitude(), MapsActivity.currentLocation.getLongitude()),
                                                         Timestamp.now(), ClassifierActivity.imageFileURL, results.get(0).getTitle(), angles, 0.0f, MapsActivity.userEmailFirebase, MapsActivity.userIdFirebase);
 
-                                                //CEMIL ONLY FOR Classifier Activity --rotate the rgbFrameBitmap image ONLY if running in portrait mode 90 degree (or -90) ---test it out.
-                                                FirebaseStorageUtil.storeImageAndCovidRecord(rgbFrameBitmap, myRecord,MapsActivity.currentLocation );
+                                                //Comment as do not want you to get error as you are not authorized to use my backend but leaving code
+                                                // so you understand how it is done
+                                                //ONLY FOR Classifier Activity --rotate the rgbFrameBitmap image ONLY if running in portrait mode 90 degree (or -90) ---test it out.
+                                                //FirebaseStorageUtil.storeImageAndCovidRecord(rgbFrameBitmap, myRecord,MapsActivity.currentLocation );
 
 
                                             }
