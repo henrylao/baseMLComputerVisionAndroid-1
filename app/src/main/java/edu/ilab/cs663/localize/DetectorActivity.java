@@ -57,6 +57,13 @@ import edu.ilab.cs663.localize.tflite.TFLiteObjectDetectionAPIModel;
 import edu.ilab.cs663.localize.tracking.MultiBoxTracker;
 import edu.ilab.cs663.storage.FirebaseStorageUtil;
 
+
+import org.opencv.android.OpenCVLoader;
+import org.opencv.android.Utils;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;  //base data structure used by OpenCV
+import org.opencv.imgproc.Imgproc; //class that has various image processing algorithms
+
 /**
  * An activity that uses a TensorFlowMultiBoxDetector and ObjectTracker to detect and then track
  * objects.
@@ -170,6 +177,12 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
         });
 
     tracker.setFrameConfiguration(previewWidth, previewHeight, sensorOrientation);
+
+    //Load in the OpenCV dependency module code from the jni files you linked in this project
+    // inside the OpenCV module
+    if (!OpenCVLoader.initDebug()) {
+      Toast.makeText(DetectorActivity.this, "Unable to load OpenCV", Toast.LENGTH_LONG).show();
+    }
   }
 
   @Override
@@ -330,6 +343,24 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
                 });
           }
         });
+
+
+      //for fun run OPenCV edge detector on the cropCOpyBitmap
+      //note in an Java API based capture Activity you will have a method that is invoked when a
+      // new frame is digitized and you will need to convert the image frame datastructure  object
+      // from Java api to an OpenCV Mat object instance so it can be processed with OpenCV calls
+     //Typically this means converting a Bitmap to an OpenCV Mat.
+    if(cropCopyBitmap == null)
+      return;
+     Mat  openCVMatImage =  new Mat (cropCopyBitmap.getWidth(), cropCopyBitmap.getHeight(), CvType.CV_8UC1);
+     Utils.bitmapToMat(cropCopyBitmap, openCVMatImage);
+     //Then you can process it like  the following line that converts an rgb image to greyscale
+     //in this call I am storing the results in the same Mat object
+      Imgproc.cvtColor(openCVMatImage,openCVMatImage, Imgproc.COLOR_RGB2GRAY);
+      //convert back to a Bitmap
+     Utils.matToBitmap(openCVMatImage,cropCopyBitmap);
+     Toast.makeText(this, "check it out", Toast.LENGTH_SHORT);
+
   }
 
   @Override

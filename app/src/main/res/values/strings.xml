@@ -14,6 +14,7 @@
     <string name="covid_id_flowers" translatable="false">Flowers</string>
     <string name="covid_id_localize" translatable="false">Localize</string>
     <string name="tfe_ic_device" translatable="false">Device:</string>
+    <string name="covid_id_edge" translatable="false">Edge</string>
     <string-array name="tfe_ic_devices" translatable="false">
         <item>CPU</item>
         <item>GPU</item>

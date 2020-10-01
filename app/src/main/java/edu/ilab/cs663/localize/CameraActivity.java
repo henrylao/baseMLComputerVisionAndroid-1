@@ -230,6 +230,9 @@ public abstract class CameraActivity extends AppCompatActivity
           }
         };
     processImage();
+   // processImage(camera);//LYNNE CREATE this so then can do a camera.addCallbackBuffer(bytes) with the changed image?
+    //see https://stackoverflow.com/questions/31417847/how-does-camera-addcallbackbuffer-mechanism-works/31662532
+    //DO IT
   }
 
   /** Callback for Camera2 API */

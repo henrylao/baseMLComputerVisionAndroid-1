@@ -87,6 +87,18 @@
         </activity>
 
 
+        <activity
+            android:name=".edge.EdgeDetectorActivity"
+            android:parentActivityName="edu.ilab.cs663.MapsActivity"
+            android:label="@string/covid_id_edge">
+            <intent-filter>
+                <action android:name="edu.ilab.cs663.edge.EdgeDetectorActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+
 
 
     </application>

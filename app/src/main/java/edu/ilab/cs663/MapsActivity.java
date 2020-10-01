@@ -97,6 +97,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     Button IRButton;
 
+
+
+    /**
+     * Handle to the EdgeDetectorActivity activity launching button
+     */
+    Button IPButton;
+
     /**
      * Activities to perform different kinds of Classification
      */
@@ -217,6 +224,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
+
+        //grab handle to the example IP Button for launching our IP(image processing) EdgeDetectorActivity
+        this.IPButton  = (Button) findViewById(R.id.IPButton);
+        //create event handler for the object Detetor to launch DetectorActvity
+        IPButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Launch classifier --here stupid default flowers classifier
+                Intent intent = new Intent("edu.ilab.cs663.edge.EdgeDetectorActivity");
+                startActivity(intent);
+            }
+        });
 
 
 
