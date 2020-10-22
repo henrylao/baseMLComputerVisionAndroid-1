@@ -15,6 +15,9 @@ developed by [![image](https://user-images.githubusercontent.com/11790686/826289
 #### Important 2: you will not be able to store things in MY firestore as your application has not been granted permission ---you need to create your OWN firebase backend and follow the instructions to [set it up so YOUR android application will be able to communicate to it](https://firebase.google.com/docs/android/setup)
 
 
+##IMPORTANT 3: To get the OPenCV module dependency working you will after cloning need to remove the dependency (called "java" related to OpenCV java code) and instead follow the directions on http://borg.csueastbay.edu/~grewe/CS663/Mat/Android/OPenCV401Example/CreateProjectOpenCV401.html to recreate the ObjectCV module and set it up (this assumes you have downloaded the most recent OpenV Android java code).
+
+
 
 
 
