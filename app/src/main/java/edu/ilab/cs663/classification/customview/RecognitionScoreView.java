@@ -22,7 +22,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 
-import edu.ilab.cs663.classification.tflite.Classifier.Recognition;
+import edu.ilab.cs663.classification.tflite.KClassifier.Recognition;
 
 import java.util.List;
 

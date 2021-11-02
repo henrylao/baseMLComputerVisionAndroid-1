@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.ilab.cs663">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -9,20 +8,23 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-
-
-    <!-- must add permission to use camera
-    -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- must add permission to use camera -->
     <uses-permission android:name="android.permission.CAMERA" />
 
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-
-
-
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front.autofocus"
+        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -31,9 +33,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.ObjectDetection">
+        <activity
+            android:name=".edge.ImageProcessActivity"
+            android:label="Edge"
+            android:parentActivityName=".MapsActivity">
+            <intent-filter>
+                <action android:name="edu.ilab.cs663.edge.ImageProcessActivity" />
 
-        <activity android:name=".auth.LoginActivity"></activity>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
 
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+
+        </activity>
+        <activity android:name=".auth.LoginActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -57,50 +74,54 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
+
+
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
         </activity>
-
         <activity
             android:name=".localize.DetectorActivity"
-            android:parentActivityName="edu.ilab.cs663.MapsActivity"
-            android:label="@string/covid_id_localize">
+            android:label="@string/covid_id_localize"
+            android:parentActivityName=".MapsActivity">
             <intent-filter>
                 <action android:name="edu.ilab.cs663.localize.DetectorActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name=".classification.ClassifierActivity"
-            android:parentActivityName="edu.ilab.cs663.MapsActivity"
-            android:label="@string/covid_id_flowers">
+            android:name=".classification.KClassifierActivity"
+            android:label="@string/covid_id_flowers"
+            android:parentActivityName=".MapsActivity">
             <intent-filter>
-                <action android:name="edu.ilab.cs663.classification.ClassifierActivity" />
+                <action android:name="edu.ilab.cs663.kclassification.KClassifierActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".classification.BinaryClassifierActivity"
+            android:label="@string/covid_id_flowers"
+            android:parentActivityName=".MapsActivity">
+            <intent-filter>
+                <action android:name="edu.ilab.cs663.classification.BinaryClassifierActivity" />
 
-
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".edge.EdgeDetectorActivity"
-            android:parentActivityName="edu.ilab.cs663.MapsActivity"
-            android:label="@string/covid_id_edge">
+            android:label="@string/covid_id_edge"
+            android:parentActivityName=".MapsActivity">
             <intent-filter>
                 <action android:name="edu.ilab.cs663.edge.EdgeDetectorActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-
-
-
     </application>
 
 </manifest>

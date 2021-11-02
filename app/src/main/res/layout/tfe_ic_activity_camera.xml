@@ -35,18 +35,23 @@
             tools:context="org.tensorflow.lite.examples.classification.CameraActivity" />
 
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_alignParentTop="true"
-            android:background="@color/tfe_semi_transparent">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/android_banner" />
-        </androidx.appcompat.widget.Toolbar>
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/model_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:background="?android:attr/textColorHighlight"
+            android:backgroundTint="@android:color/darker_gray"
+            android:entries="@array/flowers"
+            android:textAlignment="textEnd"
+            android:theme="@style/spinnerTheme"
+            android:visibility="visible">
+
+
+        </androidx.appcompat.widget.AppCompatSpinner>
 
     </RelativeLayout>
 

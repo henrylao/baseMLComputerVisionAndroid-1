@@ -15,7 +15,7 @@ limitations under the License.
 
 package edu.ilab.cs663.classification.customview;
 
-import edu.ilab.cs663.classification.tflite.Classifier.Recognition;
+import edu.ilab.cs663.classification.tflite.KClassifier.Recognition;
 
 import java.util.List;
 

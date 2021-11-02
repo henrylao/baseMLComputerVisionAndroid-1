@@ -5,12 +5,20 @@
     <string name="tfe_ic_camera_error" translation_description="Error regarding camera support[CHAR_LIMIT=40]">This device doesn\'t support Camera2 API.</string>
     <string name="tfe_ic_gpu_quant_error" translation_description="Error regarding GPU support for Quant models[CHAR_LIMIT=60]">GPU does not yet supported quantized models.</string>
     <string name="tfe_ic_model" translatable="false">Model:</string>
-    <string-array name="tfe_ic_models" translatable="false">
-        <item>Quantized_EfficientNet</item>
-        <item>Float_EfficientNet</item>
-        <item>Quantized_MobileNet</item>
-        <item>Float_MobileNet</item>
+
+    <string-array name="flowers" translatable="false">
+        <item>flower-model</item>
     </string-array>
+
+    <string-array name="dogcat" translatable="false">
+        <item>baseModel</item>
+        <item>baseModel-v2</item>
+        <item>mobileNetV1-41-0.8160</item>
+        <item>MobileNetV1-57-0.8220</item>
+        <item>MobileNetV1-128-0.89</item>
+        <item>EfficientNetB0-124-0.89</item>
+    </string-array>
+
     <string name="covid_id_flowers" translatable="false">Flowers</string>
     <string name="covid_id_localize" translatable="false">Localize</string>
     <string name="tfe_ic_device" translatable="false">Device:</string>
@@ -20,7 +28,6 @@
         <item>GPU</item>
 
     </string-array>
-
 
 
     <string name="tfe_od_app_name" translation_description="Object Detection demo app [CHAR_LIMIT=40]">TFL Detect</string>

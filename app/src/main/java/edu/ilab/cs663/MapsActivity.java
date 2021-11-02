@@ -30,7 +30,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import edu.ilab.cs663.auth.LoginActivity;
-import edu.ilab.cs663.classification.ClassifierActivity;
+import edu.ilab.cs663.classification.KClassifierActivity;
 import edu.ilab.cs663.data.FirestoreHelper;
 import edu.ilab.cs663.localize.DetectorActivity;
 
@@ -77,42 +77,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     FusedLocationProviderClient fusedLocationProviderClient;
 
+
     /**
-     * Buttons used to Launch Classification Activities
+     * All Buttons used to Launch the following:
+     * - Classification Activities
+     * - detector activity
+     * - login/logout
+     * - IR activity
+     * - Sobel Filter
      */
     Button flowersClassificationActivityButton;
-
-    /**
-     * Handle to the detector activity button
-     */
-    Button exampleDetectorActivityButton;
-
-    /**
-     * Handle to the login/logout button
-     */
+    Button objectDetectorActivityButton;
     Button loginButton;
-
-    /**
-     * Handle to the IR activity launching button
-     */
-    Button IRButton;
-
-
-
-    /**
-     * Handle to the EdgeDetectorActivity activity launching button
-     */
-    Button IPButton;
-
-    /**
-     * Activities to perform different kinds of Classification
-     */
-    ClassifierActivity flowersClassifierActivity;
-
-    /**
-     * Activity to perform localition (detection)
-     */
-    DetectorActivity exampleDetectorActivity;
+    Button binaryClassificationButton;
+    Button imageProcessButton;
+    Button sobelButton;
+//
+//    /**
+//     * Activities to perform different kinds of Classification
+//     */
+//    KClassifierActivity flowersKClassifierActivity;
+//
+//    /**
+//     * Activity to perform localition (detection)
+//     */
+//    DetectorActivity exampleDetectorActivity;
 
     private static final int REQUEST_CODE = 101;
 
@@ -190,6 +179,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //--------------------------------------------------------------------------------
+        // Google Maps Configuration
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -199,23 +191,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //need fusedLocationProviderClient to utilize Location services from device.
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-        //grab handles to the various buttons to launch different classification activities
-        this.flowersClassificationActivityButton = (Button) findViewById(R.id.flowersClassificationButton);
 
+        //--------------------------------------------------------------------------------
+        // Button Routing
+        // grab handles to the various buttons to launch different classification activities
+
+        // grab handle for perform k-classes classification on Google's flower dataset
+        this.flowersClassificationActivityButton = (Button) findViewById(R.id.flowersClassificationButton);
         //create event handler for each classification button to launch the corresponding activity
         flowersClassificationActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Launch classifier --here stupid default flowers classifier
-                Intent intent = new Intent("edu.ilab.cs663.classification.ClassifierActivity");
+                Intent intent = new Intent("edu.ilab.cs663.kclassification.KClassifierActivity");
                 startActivity(intent);
             }
         });
 
-        //grab handle to the example detector/localization Activity
-        this.exampleDetectorActivityButton  = (Button) findViewById(R.id.objectDetectButton);
+        // grab handle for perform k-classes classification on Google's flower dataset
+        this.binaryClassificationButton = (Button) findViewById(R.id.binaryClassificationButton);
+        //create event handler for each classification button to launch the corresponding activity
+        binaryClassificationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Launch classifier --here stupid default flowers classifier
+                Intent intent = new Intent("edu.ilab.cs663.classification.BinaryClassifierActivity");
+                startActivity(intent);
+            }
+        });
+
+        // grab handle to perform object detection
+        this.objectDetectorActivityButton = (Button) findViewById(R.id.objectDetectButton);
         //create event handler for the object Detetor to launch DetectorActvity
-        exampleDetectorActivityButton.setOnClickListener(new View.OnClickListener() {
+        objectDetectorActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Launch classifier --here stupid default flowers classifier
@@ -225,19 +233,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
 
-        //grab handle to the example IP Button for launching our IP(image processing) EdgeDetectorActivity
-        this.IPButton  = (Button) findViewById(R.id.IPButton);
-        //create event handler for the object Detetor to launch DetectorActvity
-        IPButton.setOnClickListener(new View.OnClickListener() {
+        this.sobelButton = (Button) findViewById(R.id.sobelButton);
+        //create event handler for using Sobel's filter ImageProcessActivity
+        sobelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Launch classifier --here stupid default flowers classifier
-                Intent intent = new Intent("edu.ilab.cs663.edge.EdgeDetectorActivity");
+                Intent intent = new Intent("edu.ilab.cs663.edge.ImageProcessActivity");
                 startActivity(intent);
             }
         });
-
-
+        // End of button routing
+        //-----------------------------------------------------
 
 
         // initialize our db helper object
@@ -406,38 +412,40 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
 
         };
-
-        // confirm that either Fine or Coarse permissions are set for app and if not return --nothing can do.
-        if (ActivityCompat.checkSelfPermission(
-                this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
-            return;
-        }
-
-        //Permissions are granted so we can now grab the last known location to initialize the currentLocation and use it to
-        // locate our map display
-        // note: call to get last known location is asynchronous so response is done in the onSucces callback method
-        //Task<Location> task = fusedLocationProviderClient.getLastLocation();
-        fusedLocationProviderClient.requestLocationUpdates(getLocationRequest(), mLocationCallback,
-                null /* Looper */);
-        /*
-        task.addOnSuccessListener(new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(Location location) {
-                if (location != null) {
-                    currentLocation = location;
-                    Toast.makeText(getApplicationContext(), currentLocation.getLatitude() + "" + currentLocation.getLongitude(), Toast.LENGTH_SHORT).show();
-                    LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-                    //make a marker for user's current location and set map to this location
-                    MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("You");
-                    mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 5));
-                    mMap.addMarker(markerOptions);
-                    Toast.makeText(getApplicationContext(), currentLocation.getLatitude() + "" + currentLocation.getLongitude(), Toast.LENGTH_LONG).show();
-                }
-            }
-        });*/
+// NOTE: Disabled because not using Google Maps API
+// Uncomment the following to re-enable Google Maps
+//
+//        // confirm that either Fine or Coarse permissions are set for app and if not return --nothing can do.
+//        if (ActivityCompat.checkSelfPermission(
+//                this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+//                this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
+//            return;
+//        }
+//
+//        //Permissions are granted so we can now grab the last known location to initialize the currentLocation and use it to
+//        // locate our map display
+//        // note: call to get last known location is asynchronous so response is done in the onSucces callback method
+//        //Task<Location> task = fusedLocationProviderClient.getLastLocation();
+//        fusedLocationProviderClient.requestLocationUpdates(getLocationRequest(), mLocationCallback,
+//                null /* Looper */);
+//        /*
+//        task.addOnSuccessListener(new OnSuccessListener<Location>() {
+//            @Override
+//            public void onSuccess(Location location) {
+//                if (location != null) {
+//                    currentLocation = location;
+//                    Toast.makeText(getApplicationContext(), currentLocation.getLatitude() + "" + currentLocation.getLongitude(), Toast.LENGTH_SHORT).show();
+//                    LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+//                    //make a marker for user's current location and set map to this location
+//                    MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("You");
+//                    mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+//                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 5));
+//                    mMap.addMarker(markerOptions);
+//                    Toast.makeText(getApplicationContext(), currentLocation.getLatitude() + "" + currentLocation.getLongitude(), Toast.LENGTH_LONG).show();
+//                }
+//            }
+//        });*/
     }
 
     private LocationRequest getLocationRequest() {

@@ -17,4 +17,16 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="spinnerTheme">
+        <item name="android:shadowColor">#000</item>
+        <item name="android:shadowDx">-2</item>
+        <item name="android:shadowDy">-2</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:colorBackground">@android:color/tertiary_text_dark</item>
+        <item name="android:backgroundTint">@color/cardview_light_background</item>
+        <item name="android:textColor">@color/tfe_color_primary_dark</item>
+        <item name="android:popupBackground">@color/common_google_signin_btn_text_light_default
+        </item>
+    </style>
+
 </resources>

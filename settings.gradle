@@ -1,3 +1,4 @@
-include ':java'
+//include ':java'
 include ':app'
+include ':sdk'
 rootProject.name='Covid_ID'
