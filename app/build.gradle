@@ -73,4 +73,9 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:16.1.0'
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'com.google.android.gms:play-services-auth:18.0.0'
+
+    // PyTorch Mobile
+    implementation 'org.pytorch:pytorch_android_lite:1.9.0'
+    implementation 'org.pytorch:pytorch_android_torchvision:1.9.0'
+
 }

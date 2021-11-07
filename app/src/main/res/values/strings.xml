@@ -13,9 +13,11 @@
     <string-array name="dogcat" translatable="false">
         <item>baseModel</item>
         <item>baseModel-v2</item>
-        <item>mobileNetV1-41-0.8160</item>
-        <item>MobileNetV1-57-0.8220</item>
-        <item>MobileNetV1-128-0.89</item>
+        <!-- Don't believe these are actually mobile net models -->
+<!--        <item>mobileNetV1-41-0.8160</item>-->
+<!--        <item>MobileNetV1-57-0.8220</item>-->
+<!--        <item>MobileNetV1-128-0.89</item>-->
+        <item>mobileNetV1-20211102-082242-190-0.8440</item>
         <item>EfficientNetB0-124-0.89</item>
     </string-array>
 
